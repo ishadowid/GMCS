@@ -1,0 +1,28 @@
+﻿<Window x:Class="CatalogueServiceClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:CatalogueServiceClient.Properties"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModels="clr-namespace:CatalogueServiceClient.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="SearchTextBox" HorizontalAlignment="Left" Height="23" Margin="213,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294" TextChanged="TextBoxBase_OnTextChanged"/>
+        <ComboBox x:Name="SearchTypeComboBox" HorizontalAlignment="Left" Margin="49,10,0,0" VerticalAlignment="Top" Width="159" SelectedIndex="0">
+            <ComboBoxItem x:Name="ByName" Content="{x:Static p:Resources.ByNameSearchText}" />
+            <ComboBoxItem x:Name="ByPhone" Content="{x:Static p:Resources.ByPhoneSearchText}" />
+        </ComboBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{x:Static p:Resources.SearchTextBoxText}" VerticalAlignment="Top"/>
+        <DataGrid x:Name="MainDataGrid" Margin="10,55,10,35" DataContext="viewModels:MainViewModel" ItemsSource="{Binding DataCollection}" AutoGenerateColumns="False" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static p:Resources.NameColumnHeaderText}" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="{x:Static p:Resources.PhoneColumnHeaderText}" Binding="{Binding PhoneNumber}"/>
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button x:Name="AddButton" Content="{x:Static p:Resources.AddButtonText}" HorizontalAlignment="Left" Margin="10,289,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click" />
+        <Button x:Name="UpdateButton" Content="{x:Static p:Resources.UpdateButtonText}" HorizontalAlignment="Left" Margin="90,289,0,0" VerticalAlignment="Top" Width="75" Click="UpdateButton_Click"/>
+        <Button x:Name="DeleteButton" Content="{x:Static p:Resources.DeleteButtonText}" HorizontalAlignment="Left" Margin="170,289,0,0" VerticalAlignment="Top" Width="75" Click="DeleteButton_Click"/>
+    </Grid>
+</Window>
